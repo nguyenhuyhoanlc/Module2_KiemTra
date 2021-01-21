@@ -38,21 +38,28 @@ public class ManagerPhoneBook {
             System.out.println("Họ tên :" + phoneBookList.get(i).getName());
             System.out.println("Giới tính :" + phoneBookList.get(i).getGender());
             System.out.println("Địa chỉ :" + phoneBookList.get(i).getAddress());
+            return;
         }
+        System.out.println("----- Danh bạ trống -----");
     }
 
     public void searchName(String name){
         for (int i = 0; i < phoneBookList.size(); i++) {
             if (name.equals(phoneBookList.get(i).getName())){
                 System.out.println(phoneBookList.get(i));
+                return;
             }
         }
+        System.out.println("----- Không tìm thấy danh bạ cần tìm kiếm -----");
+
     } public void searchNumberPhone (int numberPhone){
         for (int i = 0; i < phoneBookList.size(); i++) {
             if (numberPhone == phoneBookList.get(i).getNumberPhone()){
                 System.out.println(phoneBookList.get(i));
+                return;
             }
         }
+        System.out.println("----- Không tìm thấy danh bạ cần tìm kiếm -----");
     }
 
 

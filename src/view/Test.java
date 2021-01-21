@@ -1,6 +1,4 @@
 package view;
-
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import controller.ManagerPhoneBook;
 import model.PhoneBook;
 
@@ -11,20 +9,11 @@ public class Test {
     static Scanner sc1 = new Scanner(System.in);
     static ManagerPhoneBook managerPhoneBook = new ManagerPhoneBook();
     static int choose =0;
+
     public static void main(String[] args) {
         do {
-            System.out.println("---- CHƯƠNG TRÌNH QUẢN LÝ DANH BẠ ----");
-            System.out.println(" Chọn chức năng theo số ( để tiếp tục) :");
-            System.out.println("1. Xem danh sách");
-            System.out.println("2. Thêm mới");
-            System.out.println("3. Cập nhập");
-            System.out.println("4. Xoá");
-            System.out.println("5. Tìm kiếm");
-            System.out.println("6. Đọc file");
-            System.out.println("7. Ghi file");
-            System.out.println("8. Thoát");
-            System.out.println(" Chọn chức năng :");
-            choose = Integer.parseInt(sc.nextLine());
+            menu1();
+            choose = Integer.parseInt(sc1.nextLine());
             switch (choose){
                 case 1:
                     managerPhoneBook.showAll();
@@ -39,8 +28,27 @@ public class Test {
                     managerPhoneBook.edit(phoneNumber1,getPhoneBook());
                     break;
                 case 4:
+                    System.out.println("Nhập số điện thoại bạn muốn xoá:");
+                    int phoneNumber2 = sc.nextInt();
+                    managerPhoneBook.delete(phoneNumber2);
                     break;
                 case 5:
+                    do {
+                        menu2();
+                        choose = Integer.parseInt(sc1.nextLine());
+                        switch (choose){
+                            case 1:
+                                System.out.println("Nhập số điện thoại tìm kiếm");
+                                int phoneNumber3 = sc.nextInt();
+                                managerPhoneBook.searchNumberPhone(phoneNumber3);
+                                break;
+                            case 2:
+                                System.out.println("Nhập tên cần tìm kiếm");
+                                String name1 = sc1.nextLine();
+                                managerPhoneBook.searchName(name1);
+                                break;
+                        }
+                    }while (choose !=3);
                     break;
                 case 6:
                     break;
@@ -52,6 +60,28 @@ public class Test {
         }while (choose !=0);
 
     }
+
+    private static void menu2() {
+        System.out.println(" Mời bạn lựa chọn tìm kiếm theo :");
+        System.out.println(" 1. Tìm kiếm theo số điện thoại ");
+        System.out.println(" 2. Tìm kiếm theo tên");
+        System.out.println(" 3. Trở lại");
+    }
+
+    private static void menu1(){
+        System.out.println("---- CHƯƠNG TRÌNH QUẢN LÝ DANH BẠ ----");
+        System.out.println(" Chọn chức năng theo số ( để tiếp tục) :");
+        System.out.println("1. Xem danh sách");
+        System.out.println("2. Thêm mới");
+        System.out.println("3. Cập nhập");
+        System.out.println("4. Xoá");
+        System.out.println("5. Tìm kiếm");
+        System.out.println("6. Đọc file");
+        System.out.println("7. Ghi file");
+        System.out.println("8. Thoát");
+        System.out.println(" Chọn chức năng :");
+    }
+
 
     private static PhoneBook getPhoneBook() {
         System.out.println("Nhập số điện thoại :");
